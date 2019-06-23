@@ -15,11 +15,11 @@ import (
 )
 
 var (
-    device      string = os.Args[1]
-    snapshotLen int32  = 1024
-    promiscuous bool   = false
-    err         error
-    timeout     time.Duration = 30 * time.Second
+	device      string = os.Args[1]
+	snapshotLen int32  = 1024
+	promiscuous bool   = false
+	err         error
+	timeout     time.Duration = 30 * time.Second
 	handle      *pcap.Handle
 	hosts 		map[string]bool
 )
