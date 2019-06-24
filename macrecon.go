@@ -3,11 +3,11 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"log"
 	"net"
 	"time"
-	"os"
 
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	device      string = os.Args[1]
+	iface string
 	snapshotLen int32  = 1024
 	promiscuous bool   = false
 	err         error
@@ -25,30 +25,23 @@ var (
 )
 
 func main() {
+	iface := flag.String("iface", "wlan0", "Interface use to sniffing")
+	flag.Parse()
 	hosts = make(map[string]bool)
 	
-	if len(os.Args) != 2{
-		usage()
-	}else{
-		handle, err = pcap.OpenLive(device, snapshotLen, promiscuous, timeout)
-		if err != nil {log.Fatal(err) }
-		defer handle.Close()
+	handle, err = pcap.OpenLive(*iface, snapshotLen, promiscuous, timeout)
+	if err != nil {log.Fatal(err) }
+	defer handle.Close()
 
-		var filter string = "arp"
-		err = handle.SetBPFFilter(filter)
-		if err != nil { log.Fatal(err) }
+	var filter string = "arp"
+	err = handle.SetBPFFilter(filter)
+	if err != nil { log.Fatal(err) }
 
-		packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
-		for packet := range packetSource.Packets() {
-			printPacketInfo(packet)
-		}
-
+	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
+	for packet := range packetSource.Packets() {
+		printPacketInfo(packet)
 	}
-}
 
-func usage() {
-	fmt.Fprintf(os.Stderr, "usage: %s <iface>\n", os.Args[0])
-	os.Exit(2)
 }
 
 func printPacketInfo(packet gopacket.Packet) {
