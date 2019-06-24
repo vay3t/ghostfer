@@ -6,9 +6,16 @@ Sniffer that captures arp packets and delivers an output with the respective ip 
 
 # Usage
 Need root
-
 ```
-usage: ./macrecon <iface>
+./macrecon -iface eth0
+```
+
+# Help
+```
+./macrecon -help
+Usage of ./macrecon:
+  -iface string
+    	Interface use to sniffing (default "wlan0")
 ```
 
 # Install
