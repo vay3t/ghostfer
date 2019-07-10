@@ -2,7 +2,7 @@
 MAC Recon Go version https://github.com/vay3t/tiny-macrecon/
 
 # what is?
-Sniffer that captures arp packets and delivers an output with the respective ip and mac address
+Passive hosts enumeration. Sniffer that captures arp packets and delivers an output with the respective ip and mac address
 
 # Usage
 Need root
