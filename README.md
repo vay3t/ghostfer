@@ -1,8 +1,8 @@
-# go-macrecon
-MAC Recon Go version https://github.com/vay3t/tiny-macrecon/
+# ghostfer
+Passive hosts enumeration written in golang.
 
 # what is?
-Passive hosts enumeration written in golang. Sniffer that captures arp packets and delivers an output with the respective ip and mac address
+Sniffer that captures arp packets and delivers an output with the respective ip and mac address
 
 # Usage
 Need root
