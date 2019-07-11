@@ -21,7 +21,7 @@ Usage of ./macrecon:
 # Install
 ```
 go get github.com/google/gopacket
-git clone https://github.com/vay3t/go-macrecon
-cd go-macrecon
-go build macrecon.go
+git clone https://github.com/vay3t/ghostfer
+cd ghostfer
+go build ghostfer.go
 ```
