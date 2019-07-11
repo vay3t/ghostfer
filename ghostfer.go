@@ -19,7 +19,7 @@ var (
 	snapshotLen	int32  = 1024
 	promiscuous	bool   = true
 	err		error
-	timeout		time.Duration = 30 * time.Second
+	timeout		time.Duration = 1 * time.Second
 	handle		*pcap.Handle
 	hosts		map[string]bool
 )
