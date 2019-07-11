@@ -13,7 +13,7 @@ Need root
 # Help
 ```
 ./ghostfer -help
-Usage of ./macrecon:
+Usage of ./ghostfer:
   -iface string
     	Interface use to sniffing (default "wlan0")
 ```
