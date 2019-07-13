@@ -1,8 +1,11 @@
 # ghostfer
 Passive hosts enumeration written in golang.
 
-# what is?
+# What is?
 Sniffer that captures arp packets and delivers an output with the respective ip and mac address
+
+# Why ghostfer?
+It is made in a compiled language by what makes it more optimal and portable, the only dependence you need for run it is libpcap.
 
 # Usage
 Need root
