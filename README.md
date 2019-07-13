@@ -6,12 +6,13 @@ Sniffer that captures arp packets and delivers an output with the respective ip 
 
 # Usage
 Need root
-```
+
+```bash
 ./ghostfer -iface eth0
 ```
 
 # Help
-```
+```bash
 ./ghostfer -help
 Usage of ./ghostfer:
   -iface string
@@ -19,7 +20,8 @@ Usage of ./ghostfer:
 ```
 
 # Install
-```
+```bash
+sudo pacman -S libpcap
 go get github.com/google/gopacket
 git clone https://github.com/vay3t/ghostfer
 cd ghostfer
