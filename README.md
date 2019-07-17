@@ -30,3 +30,8 @@ git clone https://github.com/vay3t/ghostfer
 cd ghostfer
 go build ghostfer.go
 ```
+
+# tshark command eq
+```
+sudo tshark -i eth0 -f arp -T fields -e arp.src.hw_mac -e arp.src.proto_ipv4
+```
