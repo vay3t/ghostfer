@@ -33,5 +33,5 @@ go build ghostfer.go
 
 # tshark eq
 ```
-sudo tshark -i eth0 -f arp -T fields -e arp.src.hw_mac -e arp.src.proto_ipv4
+tshark -i eth0 -f arp -T fields -e arp.src.hw_mac -e arp.src.proto_ipv4
 ```
