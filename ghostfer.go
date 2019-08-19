@@ -52,7 +52,7 @@ func printPacketInfo(packet gopacket.Packet) {
 
 	buffer := bytes.Buffer{}
 	buffer.WriteString(macSrc.String())
-	buffer.WriteString(" - ")
+	buffer.WriteString("	")
 	buffer.WriteString(ipSrc.String())
 	stringCompleto := buffer.String()
 
