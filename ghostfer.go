@@ -26,7 +26,7 @@ var (
 
 func main() {
 	fmt.Println("[+] Starting MAC Recon...")
-	iface := flag.String("iface", "wlan0", "Interface use to sniffing")
+	iface := flag.String("iface", "eth0", "Interface use to sniffing")
 	flag.Parse()
 	hosts = make(map[string]bool)
 
