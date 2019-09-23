@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -8,6 +7,7 @@ import (
 	"log"
 	"net"
 	"time"
+	"os"
 
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
@@ -25,24 +25,54 @@ var (
 )
 
 func main() {
-	fmt.Println("[+] Starting MAC Recon...")
-	iface := flag.String("iface", "eth0", "Interface use to sniffing")
+	
+	iface := flag.String("i", "", "Interface use to sniffing")
+	filePCAP := flag.String("p","","Read PCAP file")
+	welp := flag.Bool("h",false,"Show this help")
+
 	flag.Parse()
+
 	hosts = make(map[string]bool)
 
-	handle, err = pcap.OpenLive(*iface, snapshotLen, promiscuous, timeout)
-	if err != nil {log.Fatal(err) }
-	defer handle.Close()
-
-	var filter string = "arp"
-	err = handle.SetBPFFilter(filter)
-	if err != nil { log.Fatal(err) }
-
-	packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
-	for packet := range packetSource.Packets() {
-		printPacketInfo(packet)
+	if *iface != "" {
+		fmt.Println("[+] Starting sniff...")
+		fmt.Println("")
+		handle, err = pcap.OpenLive(*iface, snapshotLen, promiscuous, timeout)
+		if err != nil {log.Fatal(err) }
+		defer handle.Close()
+	
+		var filter string = "arp"
+		err = handle.SetBPFFilter(filter)
+		if err != nil { log.Fatal(err) }
+	
+		packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
+		for packet := range packetSource.Packets() {
+			printPacketInfo(packet)
+		}
+	} else if *filePCAP != "" {
+		fmt.Println("[+] Reading file...")
+		fmt.Println("")
+		handle, err = pcap.OpenOffline(*filePCAP)
+		if err != nil { 
+			log.Fatal(err)
+		} else {
+			packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
+			for packet := range packetSource.Packets() {
+				printPacketInfo(packet)  // Do something with a packet here.
+			}
+		}
+	} else if *welp == true{
+		myUsage()
+	} else{
+		myUsage()
 	}
+}
 
+
+func myUsage() {
+	fmt.Printf("Usage: %s [-i interface | -p pcapfile]\n", os.Args[0])
+	fmt.Println()
+	flag.PrintDefaults()
 }
 
 func printPacketInfo(packet gopacket.Packet) {
