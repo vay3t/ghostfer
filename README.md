@@ -11,15 +11,18 @@ It is made in a compiled language by what makes it more optimal, portable and li
 Need root
 
 ```bash
-./ghostfer -iface eth0
+./ghostfer -i eth0
 ```
 
 # Help
 ```bash
-./ghostfer -help
-Usage of ./ghostfer:
-  -iface string
-    	Interface use to sniffing (default "wlan0")
+Usage: ./ghostfer [-i interface | -p pcapfile]
+
+  -h	Show this help
+  -i string
+    	Interface use to sniffing
+  -p string
+    	Read PCAP file
 ```
 
 # Install
